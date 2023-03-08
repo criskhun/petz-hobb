@@ -94,7 +94,7 @@
                         <div class="product">
                             <div class="img-container">
                                 <a href="{{ lang_url($product->url) }}">
-                                    <img src="{{asset('storage/'.$product->image)}}" alt="{{$product->name}}">
+                                    <img src="{{asset('storage/app/public/'.$product->image)}}" alt="{{$product->name}}">
                                 </a>
                             </div>
                             <a href="{{ lang_url($product->url) }}">
