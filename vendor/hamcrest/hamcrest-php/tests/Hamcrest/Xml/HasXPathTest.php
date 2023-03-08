@@ -36,7 +36,6 @@ XML;
 <html>
     <head>
         <title>Home Page</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body>
         <h1>Heading</h1>
