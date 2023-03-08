@@ -53,7 +53,7 @@
                     <div class="product">
                         <div class="img-container">
                             <a href="{{ lang_url($promoProduct->url) }}">
-                                <img src="{{asset('storage/app/public/'.$promoProduct->image)}}" alt="{{$promoProduct->name}}">
+                                <img src="{{asset('storage'.$promoProduct->image)}}" alt="{{$promoProduct->name}}">
                             </a>
                         </div>
                         <a href="{{ lang_url($promoProduct->url) }}">
@@ -86,7 +86,7 @@
                 <div class="product">
                     <div class="img-container">
                         <a href="{{ lang_url($mostSelledProduct->url) }}">
-                            <img src="{{asset('storage/app/public/'.$mostSelledProduct->image)}}" alt="{{$mostSelledProduct->name}}">
+                            <img src="{{asset('storage'.$mostSelledProduct->image)}}" alt="{{$mostSelledProduct->name}}">
                         </a>
                     </div>
                     <a href="{{ lang_url($mostSelledProduct->url) }}">
