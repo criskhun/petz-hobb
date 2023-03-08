@@ -38,7 +38,7 @@
                             <label for="productDescr-{{$locale}}">{{__('admin_pages.product_description')}}({{$locale}})</label>
                         </div>
                         <div class="md-form">
-                            <i class="fa fa-eur prefix grey-text"></i>
+                            <i class="fa fa-rouble prefix grey-text"></i>
                             <input type="text" name="price[]" value="{{ $lKey !== false ? $product['translations'][$lKey]->price : '' }}" id="publishForm-price-{{$locale}}" class="form-control">
                             <label for="publishForm-price-{{$locale}}">{{__('admin_pages.product_price')}}({{$locale}})</label>
                         </div>
