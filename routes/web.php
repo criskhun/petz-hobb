@@ -165,6 +165,10 @@ Route::get('password/reset/{token}', [
     'uses' => 'Auth\ResetPasswordController@showResetForm'
 ]);
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 /* Registration Routes. We dont need it
 Route::get('register', [
     'as' => 'register',
