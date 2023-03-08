@@ -39,7 +39,7 @@
                             <img src="{{ asset('img/phone.png') }}" alt="{{ $head_title }}">
                             <div class="right">
                                 <p>{{__('public_pages.phone_order')}}</p>
-                                <span>0888 888 888</span>
+                                <span>09385541233</span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -164,7 +164,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="phone-user">{{__('public_pages.phone')}}</label>
-                        <input type="text" name="fast_phone" class="form-control" placeholder="0888 888 888" id="phone-user">
+                        <input type="text" name="fast_phone" class="form-control" placeholder="09385541233" id="phone-user">
                         <span class="error"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
                     </div>
                     <div class="form-group">
