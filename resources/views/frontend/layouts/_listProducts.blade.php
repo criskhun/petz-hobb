@@ -208,7 +208,7 @@
                     <div class="product-content">
                         <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
                         <div class="product-price">
-                            <span class="old">$60.00</span>
+                            <span class="old">₱60.00</span>
                             <span>₱50.00</span>
                         </div>
                     </div>
@@ -428,7 +428,7 @@
                     <div class="product-content">
                         <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
                         <div class="product-price">
-                            <span class="old">$60.00</span>
+                            <span class="old">₱60.00</span>
                             <span>₱50.00</span>
                         </div>
                     </div>
@@ -648,7 +648,7 @@
                     <div class="product-content">
                         <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
                         <div class="product-price">
-                            <span class="old">$60.00</span>
+                            <span class="old">₱60.00</span>
                             <span>₱50.00</span>
                         </div>
                     </div>
@@ -868,7 +868,7 @@
                     <div class="product-content">
                         <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
                         <div class="product-price">
-                            <span class="old">$60.00</span>
+                            <span class="old">₱60.00</span>
                             <span>₱50.00</span>
                         </div>
                     </div>
@@ -1088,7 +1088,7 @@
                     <div class="product-content">
                         <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
                         <div class="product-price">
-                            <span class="old">$60.00</span>
+                            <span class="old">₱60.00</span>
                             <span>₱50.00</span>
                         </div>
                     </div>
