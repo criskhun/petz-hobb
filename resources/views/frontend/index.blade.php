@@ -239,7 +239,7 @@
                                     @php
                                     $after_discount=($product->price-($product->price*$product->discount)/100)
                                     @endphp
-                                    <span>${{number_format($after_discount,2)}}</span>
+                                    <span>₱{{number_format($after_discount,2)}}</span>
                                 </div>
                             </div>
                         </div>
