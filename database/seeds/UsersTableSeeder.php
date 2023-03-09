@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
-
+use Illuminate\Support\Facades\Hash;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -12,10 +11,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::insert([
-            'name' => 'Admin',
-            'email' => 'admin@github.com',
-            'password' => bcrypt('admin')
-        ]);
+        $data=array(
+            array(
+                'name'=>'Admin',
+                'email'=>'admin@gmail.com',
+                'password'=>Hash::make('1111'),
+                'role'=>'admin',
+                'status'=>'active'
+            ),
+            array(
+                'name'=>'User',
+                'email'=>'user@gmail.com',
+                'password'=>Hash::make('1111'),
+                'role'=>'user',
+                'status'=>'active'
+            ),
+        );
+
+        DB::table('users')->insert($data);
     }
 }

@@ -1,181 +1,185 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
-  |--------------------------------------------------------------------------
-  | Web Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register web routes for your application. These
-  | routes are loaded by the RouteServiceProvider within a group which
-  | contains the "web" middleware group. Now create something great!
-  |
- */
-
-/* Public Routes */
-// home page
-Route::get('/', 'Publics\\HomeController@index');
-Route::get('{locale}', 'Publics\\HomeController@index')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// open one product
-Route::get('{any}-{id}', 'Publics\\ProductsController@productPreview')->where('id', '[\d+]+')->where('any', '(.*)');
-Route::get('{locale}/{any}-{id}', 'Publics\\ProductsController@productPreview')
-        ->where('locale', implode('|', Config::get('app.locales')))->where('id', '[\d+]+')->where('any', '(.*)');
-
-// open all products
-Route::get('products', 'Publics\\ProductsController@index');
-Route::get('{locale}/products', 'Publics\\ProductsController@index')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// open all products with categorie
-Route::get('category/{category}', 'Publics\\ProductsController@index')->where('category', '(.*)');
-Route::get('{locale}/category/{category}', 'Publics\\ProductsController@index')
-        ->where('locale', implode('|', Config::get('app.locales')))->where('category', '(.*)');
-
-
-// checkout please
-Route::get('checkout', 'Publics\\CheckoutController@index');
-Route::get('{locale}/checkout', 'Publics\\CheckoutController@index')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// checkout post req
-Route::post('checkout', 'Publics\\CheckoutController@setOrder');
-Route::post('{locale}/checkout', 'Publics\\CheckoutController@setOrder')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// open contacts
-Route::get('contacts', 'Publics\\ContactsController@index');
-Route::get('{locale}/contacts', 'Publics\\ContactsController@index')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// send message from contacts
-Route::post('contacts', 'Publics\\ContactsController@sendMessage');
-Route::post('{locale}/contacts', 'Publics\\ContactsController@sendMessage')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// save fast order
-Route::post('fast-order', 'Publics\\CheckoutController@setFastOrder');
-Route::post('{locale}/fast-order', 'Publics\\CheckoutController@setFastOrder')
-        ->where('locale', implode('|', Config::get('app.locales')));
-
-// add product to cart from add button (ajax)
-Route::post('addProduct', 'Publics\\CartController@addProduct');
-// get products and cart html
-Route::post('getGartProducts', 'Publics\\CartController@renderCartProductsWithHtml');
-// get products and cart html
-Route::post('removeProductQuantity', 'Publics\\CartController@removeProductQuantity');
-// get products and cart html for checkout page
-Route::post('getProductsForCheckoutPage', 'Publics\\CartController@getProductsForCheckoutPage');
-// remove product from cart
-Route::post('removeProduct', 'Publics\\CartController@removeProduct');
-
-
-
-/* Administration Routes */
-Route::middleware(['auth'])->group(function () { // check for autherization
-    Route::get('admin', 'Admin\\DashboardController@index');
-    Route::get('{locale}/admin', 'Admin\\DashboardController@index')
-            ->where('locale', implode('|', Config::get('app.locales')));
-//////////////
-    Route::get('admin/publish', 'Admin\\PublishController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/publish', 'Admin\\PublishController@index');
-//////////////
-    Route::get('admin/edit/pruduct/{number}', 'Admin\\PublishController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/edit/pruduct/{number}', 'Admin\\PublishController@index');
-//////////////
-    Route::post('admin/publish', 'Admin\\PublishController@setProduct')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/publish', 'Admin\\PublishController@setProduct');
-//////////////
-    Route::post('admin/edit/pruduct/{number}', 'Admin\\PublishController@setProduct')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/edit/pruduct/{number}', 'Admin\\PublishController@setProduct');
-//////////////
-    Route::get('admin/products', 'Admin\\ProductsController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/products', 'Admin\\ProductsController@index');
-//////////////
-    Route::get('admin/categories', 'Admin\\ProductsCategoryController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/categories', 'Admin\\ProductsCategoryController@index');
-//////////////
-    Route::post('admin/categories', 'Admin\\ProductsCategoryController@setCategory')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/categories', 'Admin\\ProductsCategoryController@setCategory');
-//////////////
-    Route::post('admin/categories/{number}', 'Admin\\ProductsCategoryController@setCategory')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/categories/{number}', 'Admin\\ProductsCategoryController@setCategory');
-//////////////
-    Route::get('admin/delete/product/{number}', 'Admin\\ProductsController@deleteProduct')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/delete/product/{number}', 'Admin\\ProductsController@deleteProduct');
-//////////////
-    Route::get('admin/delete/categories', 'Admin\\ProductsCategoryController@deleteCategories')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/delete/categories', 'Admin\\ProductsCategoryController@deleteCategories');
-//////////////
-    Route::get('admin/users', 'Admin\\UsersController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/users', 'Admin\\UsersController@index');
-//////////////
-    Route::post('admin/users', 'Admin\\UsersController@setUser')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/users', 'Admin\\UsersController@setUser');
-//////////////
-    Route::get('admin/carousel', 'Admin\\CarouselController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/carousel', 'Admin\\CarouselController@index');
-//////////////
-    Route::post('admin/carousel', 'Admin\\CarouselController@setSlider')->where('locale', implode('|', Config::get('app.locales')));
-    Route::post('{locale}/admin/carousel', 'Admin\\CarouselController@setSlider');
-//////////////
-    Route::get('admin/delete/user/{userId}', 'Admin\\UsersController@deleteUser')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/delete/user/{userId}', 'Admin\\UsersController@deleteUser');
-//////////////
-    Route::get('admin/delete/slider/{id}', 'Admin\\CarouselController@deleteSlider')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/delete/slider/{id}', 'Admin\\CarouselController@deleteSlider');
-//////////////
-    Route::get('admin/orders', 'Admin\\OrdersController@index')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/orders', 'Admin\\OrdersController@index');
-//////////////
-    Route::get('admin/fast/ord/is/viewed/{id}', 'Admin\\OrdersController@markFastOrder')->where('locale', implode('|', Config::get('app.locales')));
-    Route::get('{locale}/admin/fast/ord/is/viewed/{id}', 'Admin\\OrdersController@markFastOrder');
-//////////////
-    Route::post('admin/removeGalleryImage', 'Admin\\PublishController@removeGalleryImage');
-//////////////
-    Route::post('admin/changeOrderStatus', 'Admin\\OrdersController@changeStatus');
-});
-
-// Authentication Routes...
-Route::get('login', [
-    'as' => 'login',
-    'uses' => 'Auth\LoginController@showLoginForm'
-]);
-Route::post('login', [
-    'as' => '',
-    'uses' => 'Auth\LoginController@login'
-]);
-Route::get('logout', 'Admin\\UsersController@logout');
-
-// Password Reset Routes...
-Route::post('password/email', [
-    'as' => 'password.email',
-    'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
-]);
-Route::get('password/reset', [
-    'as' => 'password.request',
-    'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm'
-]);
-Route::post('password/reset', [
-    'as' => '',
-    'uses' => 'Auth\ResetPasswordController@reset'
-]);
-Route::get('password/reset/{token}', [
-    'as' => 'password.reset',
-    'uses' => 'Auth\ResetPasswordController@showResetForm'
-]);
-
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
-
-/* Registration Routes. We dont need it
-Route::get('register', [
-    'as' => 'register',
-    'uses' => 'Auth\RegisterController@showRegistrationForm'
-]);
-Route::post('register', [
-    'as' => '',
-    'uses' => 'Auth\RegisterController@register'
-]);
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
 */
+
+Auth::routes(['register'=>false]);
+
+Route::get('user/login','FrontendController@login')->name('login.form');
+Route::post('user/login','FrontendController@loginSubmit')->name('login.submit');
+Route::get('user/logout','FrontendController@logout')->name('user.logout');
+
+Route::get('user/register','FrontendController@register')->name('register.form');
+Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
+// Reset password
+Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
+// Socialite 
+Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
+
+Route::get('/','FrontendController@home')->name('home');
+
+// Frontend Routes
+Route::get('/home', 'FrontendController@index');
+Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
+Route::get('/contact','FrontendController@contact')->name('contact');
+Route::post('/contact/message','MessageController@store')->name('contact.store');
+Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
+Route::post('/product/search','FrontendController@productSearch')->name('product.search');
+Route::get('/product-cat/{slug}','FrontendController@productCat')->name('product-cat');
+Route::get('/product-sub-cat/{slug}/{sub_slug}','FrontendController@productSubCat')->name('product-sub-cat');
+Route::get('/product-brand/{slug}','FrontendController@productBrand')->name('product-brand');
+// Cart section
+Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart')->middleware('user');
+Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');
+Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
+Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
+
+Route::get('/cart',function(){
+    return view('frontend.pages.cart');
+})->name('cart');
+Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
+// Wishlist
+Route::get('/wishlist',function(){
+    return view('frontend.pages.wishlist');
+})->name('wishlist');
+Route::get('/wishlist/{slug}','WishlistController@wishlist')->name('add-to-wishlist')->middleware('user');
+Route::get('wishlist-delete/{id}','WishlistController@wishlistDelete')->name('wishlist-delete');
+Route::post('cart/order','OrderController@store')->name('cart.order');
+Route::get('order/pdf/{id}','OrderController@pdf')->name('order.pdf');
+Route::get('/income','OrderController@incomeChart')->name('product.order.income');
+// Route::get('/user/chart','AdminController@userPieChart')->name('user.piechart');
+Route::get('/product-grids','FrontendController@productGrids')->name('product-grids');
+Route::get('/product-lists','FrontendController@productLists')->name('product-lists');
+Route::match(['get','post'],'/filter','FrontendController@productFilter')->name('shop.filter');
+// Order Track
+Route::get('/product/track','OrderController@orderTrack')->name('order.track');
+Route::post('product/track/order','OrderController@productTrackOrder')->name('product.track.order');
+// Blog
+Route::get('/blog','FrontendController@blog')->name('blog');
+Route::get('/blog-detail/{slug}','FrontendController@blogDetail')->name('blog.detail');
+Route::get('/blog/search','FrontendController@blogSearch')->name('blog.search');
+Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter');
+Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
+Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
+
+// NewsLetter
+Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
+
+// Product Review
+Route::resource('/review','ProductReviewController');
+Route::post('product/{slug}/review','ProductReviewController@store')->name('review.store');
+
+// Post Comment 
+Route::post('post/{slug}/comment','PostCommentController@store')->name('post-comment.store');
+Route::resource('/comment','PostCommentController');
+// Coupon
+Route::post('/coupon-store','CouponController@couponStore')->name('coupon-store');
+// Payment
+Route::get('payment', 'PayPalController@payment')->name('payment');
+Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+
+
+
+// Backend section start
+
+Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
+    Route::get('/','AdminController@index')->name('admin');
+    Route::get('/file-manager',function(){
+        return view('backend.layouts.file-manager');
+    })->name('file-manager');
+    // user route
+    Route::resource('users','UsersController');
+    // Banner
+    Route::resource('banner','BannerController');
+    // Brand
+    Route::resource('brand','BrandController');
+    // Profile
+    Route::get('/profile','AdminController@profile')->name('admin-profile');
+    Route::post('/profile/{id}','AdminController@profileUpdate')->name('profile-update');
+    // Category
+    Route::resource('/category','CategoryController');
+    // Product
+    Route::resource('/product','ProductController');
+    // Ajax for sub category
+    Route::post('/category/{id}/child','CategoryController@getChildByParent');
+    // POST category
+    Route::resource('/post-category','PostCategoryController');
+    // Post tag
+    Route::resource('/post-tag','PostTagController');
+    // Post
+    Route::resource('/post','PostController');
+    // Message
+    Route::resource('/message','MessageController');
+    Route::get('/message/five','MessageController@messageFive')->name('messages.five');
+
+    // Order
+    Route::resource('/order','OrderController');
+    // Shipping
+    Route::resource('/shipping','ShippingController');
+    // Coupon
+    Route::resource('/coupon','CouponController');
+    // Settings
+    Route::get('settings','AdminController@settings')->name('settings');
+    Route::post('setting/update','AdminController@settingsUpdate')->name('settings.update');
+
+    // Notification
+    Route::get('/notification/{id}','NotificationController@show')->name('admin.notification');
+    Route::get('/notifications','NotificationController@index')->name('all.notification');
+    Route::delete('/notification/{id}','NotificationController@delete')->name('notification.delete');
+    // Password Change
+    Route::get('change-password', 'AdminController@changePassword')->name('change.password.form');
+    Route::post('change-password', 'AdminController@changPasswordStore')->name('change.password');
+});
+
+
+
+
+
+
+
+
+
+
+// User section start
+Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
+    Route::get('/','HomeController@index')->name('user');
+     // Profile
+     Route::get('/profile','HomeController@profile')->name('user-profile');
+     Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+    //  Order
+    Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
+    Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
+    Route::delete('/order/delete/{id}','HomeController@userOrderDelete')->name('user.order.delete');
+    // Product Review
+    Route::get('/user-review','HomeController@productReviewIndex')->name('user.productreview.index');
+    Route::delete('/user-review/delete/{id}','HomeController@productReviewDelete')->name('user.productreview.delete');
+    Route::get('/user-review/edit/{id}','HomeController@productReviewEdit')->name('user.productreview.edit');
+    Route::patch('/user-review/update/{id}','HomeController@productReviewUpdate')->name('user.productreview.update');
+    
+    // Post comment
+    Route::get('user-post/comment','HomeController@userComment')->name('user.post-comment.index');
+    Route::delete('user-post/comment/delete/{id}','HomeController@userCommentDelete')->name('user.post-comment.delete');
+    Route::get('user-post/comment/edit/{id}','HomeController@userCommentEdit')->name('user.post-comment.edit');
+    Route::patch('user-post/comment/udpate/{id}','HomeController@userCommentUpdate')->name('user.post-comment.update');
+    
+    // Password Change
+    Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
+    Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
+
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
