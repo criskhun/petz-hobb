@@ -1,7 +1,6 @@
 @extends('layouts.app_public')
 
 @section('content')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <div class="checkout-page">
     <div class="container">
         <div class="row">
@@ -53,62 +52,72 @@
                     @php
                     $sum = $sum_total = 0;
                     if(!empty($cartProducts)) {
-                    $sum = 0;
-                    @endphp
-                    <div class="products-for-checkout">
-                        <ul>
-                            @foreach($cartProducts as $cartProduct)
-                            @php
-                            $sum_total += $cartProduct->num_added * (float)$cartProduct->price;
-                            $sum = $cartProduct->num_added * (float)$cartProduct->price;
-                            @endphp
-                            <li>
-                                <input name="id[]" value="{{$cartProduct->id}}" type="hidden">
-                                <input name="quantity[]" value="{{$cartProduct->num_added}}" type="hidden">
-                                <a href="{{lang_url($cartProduct->url)}}" class="link">                                        
-                                    <img src="{{asset('../storage/app/public/'.$cartProduct->image)}}" alt="">
-                                    <div class="info">
-                                        <span class="name">{{$cartProduct->name}}</span>
-                                        <span class="price">
-                                            {{$cartProduct->num_added}} x {{$cartProduct->price}} = {{$sum}}
-                                        </span> 
-                                    </div>
-                                </a>
-                                <div class="controls">
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button type="button" onclick="removeQuantity({{$cartProduct->id}})" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </span>
-                                        <input type="text" name="quant" disabled="" class="form-control" value="{{$cartProduct->num_added}}">
-                                        <span class="input-group-btn">
-                                            <button type="button" onclick="addProduct({{$cartProduct->id}})" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0);" class="removeProduct" onclick="removeProduct({{$cartProduct->id}})">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-                                <div class="clearfix"></div>
-                            </li>
-                            @endforeach
-                        </ul>
-                        <div class="final-total">{{__('public_pages.sum_for_pay')}} {{$sum_total}}</div>
-                    </div>
-                    <a href="javascript:void(0);" onclick="completeOrder()" class="green-btn">{{__('public_pages.complete_order')}}</a>
-                    @php
-                    } else {
-                    @endphp 
-                    <a href="{{lang_url('products')}}" class="green-btn">{{__('public_pages.first_need_add_products')}}</a>
-                    @php 
-                    }
-                    @endphp
-                </form>
+                        $sum = 0;
+                        @endphp
+<div class="products-for-checkout">
+    <ul>
+        @foreach($cartProducts as $cartProduct)
+        @php
+        $sum_total += $cartProduct->num_added * (float)$cartProduct->price;
+        $sum = $cartProduct->num_added * (float)$cartProduct->price;
+        @endphp
+        <li>
+            <input name="id[]" value="{{$cartProduct->id}}" type="hidden">
+            <input name="quantity[]" value="{{$cartProduct->num_added}}" type="hidden">
+            <a href="{{lang_url($cartProduct->url)}}" class="link">                                        
+                <img src="{{asset('../storage/app/public/'.$cartProduct->image)}}" alt="">
+                <div class="info">
+                    <span class="name">{{$cartProduct->name}}</span>
+                    <span class="price">
+                        {{$cartProduct->num_added}} x {{$cartProduct->price}} = {{$sum}}
+                    </span> 
+                </div>
+            </a>
+            <div class="controls">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="button" onclick="removeQuantity({{$cartProduct->id}})" class="btn btn-default">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" name="quant" disabled="" class="form-control" value="{{$cartProduct->num_added}}">
+                    <span class="input-group-btn">
+                        <button type="button" onclick="addProduct({{$cartProduct->id}})" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
             </div>
-        </div>
-    </div>
+            <a href="javascript:void(0);" class="removeProduct" onclick="removeProduct({{$cartProduct->id}})">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            <div class="clearfix"></div>
+        </li>
+        <script>
+            function removeQuantity(id) {
+                // your existing code here
+                location.reload();
+            }
+
+            function addProduct(id) {
+                // your existing code here
+                location.reload();
+            }
+
+            function removeProduct(id) {
+                // your existing code here
+                location.reload();
+            }
+        </script>
+        @endforeach
+    </ul>
+    <div class="final-total">{{__('public_pages.sum_for_pay')}} {{$sum_total}}</div>
 </div>
-@endsection
+<a href="javascript:void(0);" onclick="completeOrder()" class="green-btn">{{__('public_pages.complete_order')}}</a>
+@php
+} else {
+@endphp 
+<a href="{{lang_url('products')}}" class="green-btn">{{__('public_pages.first_need_add_products')}}</a>
+@php 
+}
+@endphp
