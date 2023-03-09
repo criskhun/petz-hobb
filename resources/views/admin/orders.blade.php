@@ -75,7 +75,7 @@
                                     @endphp
                                     <div class="product">
                                         <a href="{{ lang_url($producta->url) }}" target="_blank">
-                                            <img src="{{asset('storage/'.$producta->image)}}" alt="">
+                                            <img src="{{asset('../storage/app/public/'.$producta->image)}}" alt="">
                                             <div class="info">
                                                 <span class="name">{{$producta->name}}</span>
                                                 <span class="qiantity">

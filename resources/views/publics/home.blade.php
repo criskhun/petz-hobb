@@ -24,7 +24,7 @@
                 @foreach($carousel as $slide)
                 <div class="item {{ $i == 0 ? 'active' : ''}}">
                     <a href="{{$slide->link}}">
-                        <img src="{{asset('storage/'.$slide->image)}}" alt="">
+                        <img src="{{asset('../storage/app/public/'.$slide->image)}}" alt="">
                     </a>
                 </div>
                 @php

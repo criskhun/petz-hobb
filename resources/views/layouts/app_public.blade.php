@@ -69,7 +69,7 @@
                                         @endphp
                                         <li>
                                             <a href="{{lang_url($cartProduct->url)}}" class="link">                                        
-                                                <img src="{{asset('storage/'.$cartProduct->image)}}" alt="">
+                                                <img src="{{asset('../storage/app/public'.$cartProduct->image)}}" alt="">
                                                 <span class="name">{{$cartProduct->name}}</span>
                                                 <span class="price">
                                                     {{$cartProduct->num_added}} x {{$cartProduct->price}}

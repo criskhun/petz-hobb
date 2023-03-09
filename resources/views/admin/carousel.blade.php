@@ -16,7 +16,7 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         @foreach ($sliders as $slider)
         <div class="slide">
-            <img src="{{asset('storage/'.$slider->image)}}" class="img-fluid z-depth-1" alt="1">
+            <img src="{{asset('../storage/app/public/'.$slider->image)}}" class="img-fluid z-depth-1" alt="1">
             <span class="link">
                 <a href="{{$slider->link}}" target="_blank">{{$slider->link}}</a>
             </span>

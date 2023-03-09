@@ -86,7 +86,7 @@
                     @endphp
                     <input type="hidden" value="{{$product['product']->image}}" name="old_image">
                     <div class="md-form">
-                        <img src="{{asset('storage/'.$product['product']->image)}}" alt="{{__('admin_pages.no_choosed_image')}}" style="max-height: 300px;" class="img-thumbnail">
+                        <img src="{{asset('../storage/app/public/'.$product['product']->image)}}" alt="{{__('admin_pages.no_choosed_image')}}" style="max-height: 300px;" class="img-thumbnail">
                     </div>
                     @php
                     }
@@ -115,7 +115,7 @@
                             if (is_file($dir . $file)) {
                             @endphp
                             <div id="image-container-{{$i}}">
-                                <img src="{{asset('storage/moreImagesFolders/'.$product['product']->folder.'/'.$file)}}" alt="{{__('admin_pages.no_choosed_image')}}" style="max-height: 300px;" class="img-thumbnail">
+                                <img src="{{asset('../storage/app/public/moreImagesFolders/'.$product['product']->folder.'/'.$file)}}" alt="{{__('admin_pages.no_choosed_image')}}" style="max-height: 300px;" class="img-thumbnail">
                                 <a href="javascript:void(0);" onclick="removeGalleryImage('{{$product['product']->folder.'/'.$file}}', {{$i}})"><i class="material-icons">delete</i></a>
                             </div>
                             @php

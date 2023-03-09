@@ -65,7 +65,7 @@
                                 <input name="id[]" value="{{$cartProduct->id}}" type="hidden">
                                 <input name="quantity[]" value="{{$cartProduct->num_added}}" type="hidden">
                                 <a href="{{lang_url($cartProduct->url)}}" class="link">                                        
-                                    <img src="{{asset('storage/'.$cartProduct->image)}}" alt="">
+                                    <img src="{{asset('../storage/app/public/'.$cartProduct->image)}}" alt="">
                                     <div class="info">
                                         <span class="name">{{$cartProduct->name}}</span>
                                         <span class="price">
