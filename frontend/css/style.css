@@ -1043,7 +1043,7 @@ Version:1.0
 	position: absolute;
 	top: -7px;
 	right: -8px;
-	background: #f6931d;
+	background: #0bc93b;
 	width: 18px;
 	height: 18px;
 	line-height: 18px;
@@ -1769,7 +1769,7 @@ Version:1.0
   transition: opacity 0.5s ease, transform 2s cubic-bezier(0, 0, 0.44, 1.18), -webkit-transform 2s cubic-bezier(0, 0, 0.44, 1.18);
 }
 .single-product .product-img a span.price-dec {
-	background-color: #f6931d;
+	background-color: #0bc93b;
 	display: inline-block;
 	font-size: 11px;
 	color: #fff;
