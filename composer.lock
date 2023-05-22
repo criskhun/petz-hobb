@@ -5973,16 +5973,16 @@
             "time": "2022-03-03T13:19:32+00:00"
         },
         {
-            "name": "#/collision",
+            "name": "nunomaduro/collision",
             "version": "v4.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/#/collision.git",
+                "url": "https://github.com/nunomaduro/collision.git",
                 "reference": "7c125dc2463f3e144ddc7e05e63077109508c94e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/#/collision/zipball/7c125dc2463f3e144ddc7e05e63077109508c94e",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/7c125dc2463f3e144ddc7e05e63077109508c94e",
                 "reference": "7c125dc2463f3e144ddc7e05e63077109508c94e",
                 "shasum": ""
             },
@@ -5999,7 +5999,7 @@
                 "fruitcake/laravel-cors": "^1.0",
                 "laravel/framework": "^7.0",
                 "laravel/tinker": "^2.0",
-                "#/larastan": "^0.6",
+                "nunomaduro/larastan": "^0.6",
                 "orchestra/testbench": "^5.0",
                 "phpstan/phpstan": "^0.12.3",
                 "phpunit/phpunit": "^8.5.1 || ^9.0"
@@ -6008,13 +6008,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "#\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
+                        "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "#\\Collision\\": "src/"
+                    "NunoMaduro\\Collision\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6024,7 +6024,7 @@
             "authors": [
                 {
                     "name": "Nuno Maduro",
-                    "email": "e#@gmail.com"
+                    "email": "enunomaduro@gmail.com"
                 }
             ],
             "description": "Cli error handling for console/command-line PHP applications.",
@@ -6046,11 +6046,11 @@
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/#",
+                    "url": "https://github.com/nunomaduro",
                     "type": "github"
                 },
                 {
-                    "url": "https://www.patreon.com/#",
+                    "url": "https://www.patreon.com/nunomaduro",
                     "type": "patreon"
                 }
             ],

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
-use #\Collision\Provider;
+use NunoMaduro\Collision\Provider;
 use App\Models\Cart;
 use App\Models\Product;
 use DB;
