@@ -403,7 +403,7 @@
                                             <form-group>
                                                 <input name="payment_method"  type="radio" value="cod"> <label> Cash On Delivery</label><br>
                                                 <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br>
-                                                <input name="payment_method"  type="radio" value="gcash"> <label> GCash</label> 
+                                                <input name="payment_method" type="radio" value="gcash" id="gcash-option"> <label> GCash</label>  
                                             </form-group>
                                             
                                         </div>
@@ -421,7 +421,7 @@
                                 <div class="single-widget get-button">
                                     <div class="content">
                                         <div class="button">
-                                            <button type="submit" class="btn">proceed to checkout</button>
+                                        <a id="checkout-link" class="btn" href="#">proceed to checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -579,5 +579,15 @@
 		});
 
 	</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#gcash-option').click(function() {
+        $('#checkout-link').attr('href', 'https://example.com/gcash-payment-page');
+    });
+});
+</script>
+
 
 @endpush
