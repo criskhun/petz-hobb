@@ -130,6 +130,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/shipping','ShippingController');
     // Coupon
     Route::resource('/coupon','CouponController');
+    // POS
+    Route::resource('/pos','POSController');
     // Settings
     Route::get('settings','AdminController@settings')->name('settings');
     Route::post('setting/update','AdminController@settingsUpdate')->name('settings.update');
