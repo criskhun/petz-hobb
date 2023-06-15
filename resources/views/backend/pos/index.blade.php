@@ -103,4 +103,34 @@
                 product_id: productId,
                 _token: "{{ csrf_token() }}"
             },
-            success: function (response
+            success: function (response) {
+                // Update the selected products table
+                $('#selected-products').html(response.html);
+            }
+        });
+    }
+
+    // Print receipt
+    function printReceipt() {
+        var vat = parseFloat($('#vat').val()) || 0;
+        var discount = parseFloat($('#discount').val()) || 0;
+        var amountPaid = parseFloat($('#amount-paid').val()) || 0;
+
+        // Make an AJAX request to print the receipt
+        $.ajax({
+            url: "{{ route('cash-register.print-receipt') }}",
+            method: "POST",
+            data: {
+                vat: vat,
+                discount: discount,
+                amount_paid: amountPaid,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // Print the receipt or display a success message
+                alert('Receipt printed!');
+            }
+        });
+    }
+</script>
+@endpush

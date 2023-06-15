@@ -34,6 +34,7 @@
                     <input type="number" class="form-control" id="discount" name="discount" value="{{ $discount }}" step="0.01">
                 </div>
                 <button type="submit" class="btn btn-primary">Update Totals</button>
+                <a href="{{ route('cash-register.print-receipt') }}" class="btn btn-primary">Print Receipt</a>
             </form>
         </div>
     </div>
