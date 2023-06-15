@@ -1,5 +1,6 @@
-@extends('layouts.app')
-
+@extends('backend.layouts.master')
+@section('title','PETZ AND HOBBIES || DASHBOARD')
+@section('main-content')
 @section('content')
 <div class="row">
     <div class="col-md-6">
