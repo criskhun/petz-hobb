@@ -11,7 +11,7 @@ class POSController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('cash_register.index', compact('products'));
+        return view('pos.index', compact('products'));
     }
 
     public function addProduct(Request $request)
