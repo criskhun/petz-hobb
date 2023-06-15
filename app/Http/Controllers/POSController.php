@@ -73,10 +73,10 @@ class POSController extends Controller
     {
         $coupon=Coupon::find($id);
         if($coupon){
-            return view('backend.coupon.edit')->with('coupon',$coupon);
+            return view('backend.pos.edit')->with('coupon',$coupon);
         }
         else{
-            return view('backend.coupon.index')->with('error','Coupon not found');
+            return view('backend.pos.index')->with('error','Coupon not found');
         }
     }
 
@@ -105,7 +105,7 @@ class POSController extends Controller
         else{
             request()->session()->flash('error','Please try again!!');
         }
-        return redirect()->route('coupon.index');
+        return redirect()->route('pos.index');
         
     }
 
@@ -126,7 +126,7 @@ class POSController extends Controller
             else{
                 request()->session()->flash('error','Error, Please try again');
             }
-            return redirect()->route('coupon.index');
+            return redirect()->route('pos.index');
         }
         else{
             request()->session()->flash('error','Coupon not found');
