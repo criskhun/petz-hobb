@@ -4,22 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coupon extends Model
+class POS extends Model
 {
-    protected $fillable=['code','type','value','status'];
+    protected $fillable = ['product_id'];
 
-    public static function findByCode($code){
-        return self::where('code',$code)->first();
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
-    public function discount($total){
-        if($this->type=="fixed"){
-            return $this->value;
-        }
-        elseif($this->type=="percent"){
-            return ($this->value /100)*$total;
-        }
-        else{
-            return 0;
-        }
+
+    public function getTotalAmount()
+    {
+        // Calculate the total amount based on the added products
+        return $this->sum('product.price');
     }
 }
