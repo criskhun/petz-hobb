@@ -17,21 +17,21 @@ class POSController extends Controller
     public function addProduct(Request $request)
     {
         $product = Product::findOrFail($request->input('product_id'));
-        CashRegister::create(['product_id' => $product->id]);
+        POS::create(['product_id' => $product->id]);
         return redirect()->back()->with('success', 'Product added successfully.');
     }
 
     public function removeProduct(Request $request)
     {
         $product = Product::findOrFail($request->input('product_id'));
-        CashRegister::where('product_id', $product->id)->delete();
+        POS::where('product_id', $product->id)->delete();
         return redirect()->back()->with('success', 'Product removed successfully.');
     }
 
     public function showList()
     {
-        $products = CashRegister::with('product')->get();
-        $totalAmount = CashRegister::getTotalAmount();
+        $products = POS::with('product')->get();
+        $totalAmount = POS::getTotalAmount();
         return view('backend.pos.list', compact('products', 'totalAmount'));
     }
 }
