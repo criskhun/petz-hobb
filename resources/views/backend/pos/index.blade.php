@@ -1,19 +1,106 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <h2>Add Product</h2>
-        <form method="POST" action="{{ route('pos.add-product') }}">
-            @csrf
-            <div class="form-group">
-                <label for="product_id">Product:</label>
-                <select class="form-control" id="product_id" name="product_id">
-                    @foreach($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->title }}</option>
-                    @endforeach
-                </select>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Products</h4>
             </div>
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->title }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="addProduct({{ $product->id }})">
+                                    Add
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Selected Products</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="selected-products">
+                        <!-- Selected products will be dynamically added here -->
+                    </tbody>
+                </table>
+                <hr>
+                <div class="form-group">
+                    <label for="vat">VAT (%)</label>
+                    <input type="number" class="form-control" id="vat" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount</label>
+                    <input type="number" class="form-control" id="discount" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="amount-paid">Amount Paid</label>
+                    <input type="number" class="form-control" id="amount-paid" min="0" step="0.01">
+                </div>
+                <button class="btn btn-primary" onclick="printReceipt()">Print Receipt</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+
+@push('scripts')
+<script>
+    // Add product to selected list
+    function addProduct(productId) {
+        // Make an AJAX request to add the product
+        $.ajax({
+            url: "{{ route('cash-register.add-product') }}",
+            method: "POST",
+            data: {
+                product_id: productId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // Update the selected products table
+                $('#selected-products').html(response.html);
+            }
+        });
+    }
+
+    // Remove product from selected list
+    function removeProduct(productId) {
+        // Make an AJAX request to remove the product
+        $.ajax({
+            url: "{{ route('cash-register.remove-product') }}",
+            method: "POST",
+            data: {
+                product_id: productId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response
