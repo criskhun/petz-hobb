@@ -24,7 +24,7 @@ class POSController extends Controller
      */
     public function create()
     {
-        return view('backend.coupon.create');
+        return view('backend.pos.create');
     }
 
     /**
