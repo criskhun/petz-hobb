@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\POS;
 use Illuminate\Http\Request;
 use App\Models\Cart;
-class CouponController extends Controller
+class POSController extends Controller
 {
     /**
      * Display a listing of the resource.
