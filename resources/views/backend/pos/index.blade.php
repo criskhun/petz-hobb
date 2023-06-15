@@ -1,4 +1,3 @@
-@extends('backend.layouts.master')
 @section('title','PETZ AND HOBBIES || DASHBOARD')
 @section('content')
 <div class="row">
