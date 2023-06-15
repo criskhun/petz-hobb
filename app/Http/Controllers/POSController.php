@@ -14,7 +14,7 @@ class POSController extends Controller
     public function index()
     {
         $coupon=Coupon::orderBy('id','DESC')->paginate('10');
-        return view('backend.coupon.index')->with('coupons',$coupon);
+        return view('backend.pos.index')->with('coupons',$coupon);
     }
 
     /**
