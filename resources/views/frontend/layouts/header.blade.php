@@ -102,7 +102,7 @@
                                     @endphp
                                 @endforeach
                            @endif
-                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"></i> <span class="total-count">{{Helper::wishlistCount()}}</span></a>
+                            <!-- <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"></i> <span class="total-count">{{Helper::wishlistCount()}}</span></a> -->
                             <!-- Shopping Item -->
                             @auth
                                 <div class="shopping-item">
