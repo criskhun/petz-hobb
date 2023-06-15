@@ -132,7 +132,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/coupon','CouponController');
     // POS
     Route::resource('/pos','POSController');
-    Route::post('/pos/add-product', [CashRegisterController::class, 'addProduct'])->name('pos.add-product');
+    Route::post('/pos/add-product', [POS::class, 'addProduct'])->name('pos.add-product');
 
     // Settings
     Route::get('settings','AdminController@settings')->name('settings');
