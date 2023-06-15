@@ -133,6 +133,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // POS
     Route::resource('/pos','POSController');
     Route::post('/pos/add-product', [POSController::class, 'addProduct'])->name('pos.add-product');
+    Route::post('/backend/pos/add-product', [POSController::class, 'addProduct'])->name('backend.pos.add-product');
+
 
     // Settings
     Route::get('settings','AdminController@settings')->name('settings');
