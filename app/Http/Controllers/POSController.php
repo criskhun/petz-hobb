@@ -54,9 +54,10 @@ class POSController extends Controller
     
         return response()->json(['message' => 'Receipt printed!']);
     }
+
     public function showList()
     {
-    $selectedProducts = POS::with('product')->get();
-    return view('backend.pos.index', compact('selectedProducts'));
+        $selectedProducts = POS::with('product')->get();
+        return view('backend.pos.list', compact('selectedProducts'));
     }
 }
