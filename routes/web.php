@@ -133,8 +133,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // POS
     Route::resource('/pos','POSController');
     Route::post('/pos/add-product', [POSController::class, 'addProduct'])->name('pos.add-product');
-    Route::post('/backend/pos/add-product', [POSController::class, 'addProduct'])->name('backend.pos.add-product');
-
+    Route::post('/pos/remove-product', [POSController::class, 'removeProduct'])->name('pos.remove-product');
+    Route::post('/pos/print-receipt', [POSController::class, 'printReceipt'])->name('pos.print-receipt');
 
     // Settings
     Route::get('settings','AdminController@settings')->name('settings');
