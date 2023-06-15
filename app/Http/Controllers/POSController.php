@@ -11,7 +11,7 @@ class POSController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('pos.index', compact('products'));
+        return view('backend.pos.index', compact('products'));
     }
 
     public function addProduct(Request $request)
@@ -32,6 +32,6 @@ class POSController extends Controller
     {
         $products = CashRegister::with('product')->get();
         $totalAmount = CashRegister::getTotalAmount();
-        return view('pos.list', compact('products', 'totalAmount'));
+        return view('backend.pos.list', compact('products', 'totalAmount'));
     }
 }
