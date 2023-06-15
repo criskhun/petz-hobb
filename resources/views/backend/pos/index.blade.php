@@ -80,7 +80,7 @@
     function addProduct(productId) {
         // Make an AJAX request to add the product
         $.ajax({
-            url: "{{ route('cash-register.add-product') }}",
+            url: "{{ route('backend.pos.add-product') }}",
             method: "POST",
             data: {
                 product_id: productId,
@@ -97,7 +97,7 @@
     function removeProduct(productId) {
         // Make an AJAX request to remove the product
         $.ajax({
-            url: "{{ route('cash-register.remove-product') }}",
+            url: "{{ route('backend.pos.remove-product') }}",
             method: "POST",
             data: {
                 product_id: productId,
@@ -118,7 +118,7 @@
 
         // Make an AJAX request to print the receipt
         $.ajax({
-            url: "{{ route('cash-register.print-receipt') }}",
+            url: "{{ route('backend.pos.print-receipt') }}",
             method: "POST",
             data: {
                 vat: vat,
